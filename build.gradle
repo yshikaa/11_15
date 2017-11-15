@@ -19,12 +19,21 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
-    compile 'com.google.guava:guava:23.0'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
+    }
+}
 
-    // Use JUnit test framework
-    testCompile 'junit:junit:4.12'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+dependencies {
+   testCompile("org.junit.jupiter:junit-jupiter-api:5.0.2")
+   testCompileOnly("org.apiguardian:apiguardian-api:1.0.0")
+   testRuntime("org.junit.jupiter:junit-jupiter-engine;5.0.2")
 }
 
 // Define the main class for the application
